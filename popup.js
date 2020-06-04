@@ -18,12 +18,10 @@ function addGlobalStyle(css) {
   };
 
 document.querySelector("[accesskey^='U']").click();
-document.querySelector("#container").querySelector("[class^='content']").style.maxHeight = '100%'
-var overlay = document.querySelector("[class^='overlay']")
-if (overlay) {
-  overlay.style.display = 'none'
-}
-document.querySelector("[class^='svgContainer']").querySelector("button").style.display = 'none'
+addGlobalStyle('#container [class^="content"] { max-height: 100% !important; }');
+addGlobalStyle('[class^="overlay"] { display: none; }');
+addGlobalStyle('[class^="svgContainer"] button { display: none; }');
+addGlobalStyle('[class^="toastContainer"], .Toastify { display: none; }');
 document.querySelector("[class^='navbar']").style.display = 'none'
 document.querySelector("[class^='actionsbar']").style.display = 'none';
 document.querySelector("body").style.background = '#000000';
