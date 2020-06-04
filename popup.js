@@ -73,6 +73,43 @@ onlyWebcam.onclick = function(element) {
     });
 };
 
+let onlyWebcamChromaKey = document.getElementById('onlyWebcamChromaKey');
+let onlyWebcamChromaKeyCode = `
+function addGlobalStyle(css) {
+    try {
+      var elmHead, elmStyle;
+      elmHead = document.getElementsByTagName('head')[0];
+      elmStyle = document.createElement('style');
+      elmStyle.type = 'text/css';
+      elmHead.appendChild(elmStyle);
+      elmStyle.innerHTML = css;
+    }
+    catch (e) {
+      if (!document.styleSheets.length) {
+        document.createStyleSheet();
+      }
+      document.styleSheets[0].cssText += css;
+    }
+  };
+
+document.querySelector("[accesskey^='U']").click();
+document.querySelector("[class^='navbar']").style.display = 'none'
+document.querySelector("[class^='actionsbar']").style.display = 'none';
+document.querySelector("body").style.background = '#64c864';
+document.querySelector("[class^='svgContainer']").querySelector("button").click()
+addGlobalStyle('[class^="videoListItem"] [class^="info"] { display: none; }');
+addGlobalStyle('[class*="fullScreenButton"] { display: none; }');
+addGlobalStyle('[class*="bannerContainer"] { display: none; }');
+`
+
+onlyWebcamChromaKey.onclick = function(element) {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.executeScript(
+            tabs[0].id,
+            {code: onlyWebcamChromaKeyCode});
+    });
+};
+
 let invertDimensions = document.getElementById('invertDimensions');
 let invertDimensionsCode = `
 
