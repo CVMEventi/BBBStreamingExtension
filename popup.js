@@ -19,12 +19,16 @@ function addGlobalStyle(css) {
 
 document.querySelector("[accesskey^='U']").click();
 document.querySelector("#container").querySelector("[class^='content']").style.maxHeight = '100%'
-document.querySelector("[class^='overlay']").style.display = 'none'
+var overlay = document.querySelector("[class^='overlay']")
+if (overlay) {
+  overlay.style.display = 'none'
+}
 document.querySelector("[class^='svgContainer']").querySelector("button").style.display = 'none'
 document.querySelector("[class^='navbar']").style.display = 'none'
 document.querySelector("[class^='actionsbar']").style.display = 'none';
 document.querySelector("body").style.background = '#000000';
 addGlobalStyle('[class*="fullScreenButton"] { display: none; }');
+addGlobalStyle('[class*="bannerContainer"] { display: none; }');
 `
 
 onlyPresentation.onclick = function(element) {
